@@ -518,7 +518,7 @@ with SteamClient('MY_API_KEY', 'MY_USERNAME', 'MY_PASSWORD', 'PATH_TO_STEAMGUARD
 ```
 
 
-**create_sell_order(assetid: str, game: GameOptions, money_to_receive: str) -> dict**
+**create_sell_order(assetid: str, game: GameOptions, money_to_receive: str, amount: int = 1) -> dict**
 
 Using `SteamClient.login` method is required before usage
 
@@ -531,10 +531,12 @@ from steampy.models import GameOptions
 with SteamClient('MY_API_KEY', 'MY_USERNAME', 'MY_PASSWORD', 'PATH_TO_STEAMGUARD_FILE') as client:
     asset_id_to_sell = 'some_asset_id'
     game = GameOptions.DOTA2
-    sell_response = client.market.create_sell_order(asset_id_to_sell, game, "10000")
+    sell_response = client.market.create_sell_order(asset_id_to_sell, game, "10000", 1)
 ```
  
 ⚠️ `money_to_receive` has to be in cents, so "100.00" should be passed has "10000"
+
+⚠️ `money_to_receive` per one item, if amount above 1
 
 **create_buy_order(market_name: str, price_single_item: str, quantity: int, game: GameOptions, currency: Currency = Currency.USD) -> dict**
 
